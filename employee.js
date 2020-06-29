@@ -174,6 +174,42 @@ function updateEmployeeRole() {
                 message: "What is the employee's new role?",
                 choices: info
             })
+            db.query('UPDATE employee SET role_id = (SELECT id FROM role WHERE role.title = ?) WHERE (SELECT CONCAT(first_name, " ", last_name)) = ?', [roleData.role, answer.update], (err, res) => {
+                if(err)throw err;
+                runStart();
+            })
         })
     })
+}
+function updateEmployeeManager(){
+    db.query('SELECT CONCAT(first_name, " ", last_name) AS "Employees" FROM employee', async (err, res) => {
+        if (err) throw err;
+        let data = [];
+        Object.keys(res).forEach(key => {
+            data.push(res[key].Employees);
+        })
+        let answer = await inquirer.prompt({
+            type: 'list',
+            name: 'update',
+            message: 'What employee would you like to update?',
+            choices: data
+        })
+        db.query('SELECT CONCAT(first_name, " ", last_name) AS "Managers" FROM employee WHERE (employee.id IN (SELECT manager_id FROM employee))', async (err, res) => {
+            if (err) throw err;
+            let info = [];
+            Object.keys(res).forEach(key => {
+                info.push(res[key].Managers);
+            })
+            let roleData = await inquirer.prompt({
+                type: 'list',
+                name: 'manager',
+                message: "Who is the employee's new manager?",
+                choices: info
+            })
+            db.query('UPDATE employee SET manager_id = (SELECT id FROM (SELECT id FROM employee WHERE (SELECT CONCAT(first_name, " ", last_name)= ?))updatedEmployee) WHERE (SELECT CONCAT(first_name, " ", last_name)= ?)', [roleData.manager, answer.update], (err, res) => {
+                if(err)throw err;
+                runStart();
+            })
+        })
+    })  
 }
