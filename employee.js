@@ -75,9 +75,9 @@ function viewAllByDepartment() {
         db.query('SELECT first_name, last_name, title, salary, name AS department FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id WHERE department.name = ?', [answer.department], (err, res) => {
             if (err) throw err;
             console.table(res);
+            runStart();
         })
     })
-    runStart();
 }
 function viewAllByManager() {
     db.query('SELECT CONCAT(first_name, " ", last_name) AS "Managers" FROM employee WHERE (employee.id IN (SELECT manager_id FROM employee))', async (err, res) => {
@@ -92,11 +92,11 @@ function viewAllByManager() {
             message: 'Which manager would you like to search for?',
             choices: result
         })
-        db.query('SELECT emp.first_name + " " + emp.last_name AS Employee FROM employee emp INNER JOIN employee mgr ON emp.manager_id = mgr.id WHERE mgr.first_name + " " + mgr.last_name AS Manager = ?', [answer.manager], (err, res) => {
+        db.query('SELECT emp.first_name, emp.last_name FROM employee emp, employee mgr WHERE emp.manager_id = (SELECT id FROM (SELECT id FROM employee WHERE (SELECT CONCAT(mgr.first_name + " " + mgr.last_name) = ?))manager)', [answer.manager], (err, res) => {
             if (err) throw err;
             console.table(res);
+            runStart();
         })
-        runStart();
     })
 }
 function addEmployee() {
