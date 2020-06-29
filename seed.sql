@@ -1,0 +1,3 @@
+INSERT INTO department(name) VALUES('Sales', 'Legal', 'Engineering', 'Finance');
+INSERT INTO role(title, salary, department_id) VALUES('Lawyer', 195000, 2), ('Accountant', 90000, 4), ('Software Engineer', 145000, 3), ('Sales Manager', 120000, 1), ('Salesperson', 98000, 1), ('Lead Engineer', 175000, 3);
+INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES('Rosamaria','Mariano', 3, 9), ('Sabra', 'Camillo', 4), ('Teodora', 'Bier', 1), ('Carlie', 'Hahne', 2), ('Leesa', 'Rucks', 5, 2), ('Jaye', 'Giddings', 1), ('Marilyn', 'Litwin', 5, 2), ('Dagny', 'Merry', 2), ('Mitzi', 'Petri', 6), ('Sean', 'Gingras', 2), ('Zachery', 'Kee', 3, 9);
