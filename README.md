@@ -1,7 +1,9 @@
 # manageMyTeam
 ## Description [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
-AS a user, I want to be able to write and save notes. I also want to be able to delete notes I've written before so that I can organize my thoughts and keep track of tasks I need to complete. In a business context I would like to take notes of important points I would need later in the future.
+As a business owner
+I want to be able to view and manage the departments, roles, and employees in my company
+So that I can organize and plan my business
 
 ## Table of Contents
 
