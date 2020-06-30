@@ -37,7 +37,7 @@ node employee.js
 
 This is an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
 
- ![employee-manager gif](./Assets/employeeManger.gif)
+ ![employee-manager gif](./Assets/employeeManager.gif)
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Jose-lco/undefined/issues)
 
